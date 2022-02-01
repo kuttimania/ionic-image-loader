@@ -389,3 +389,79 @@ imageAttributes.push({
 
 ## Support this project
 If you find this project useful, please star the repo to let people know that it's reliable. Also, share it with friends and colleagues that might find this useful as well. Thank you :smile:
+
+
+public async SendbySpecifics(uId, userList, payload, data) {
+
+        const notification_options = {
+
+            priority: `high`,
+
+            timeToLive: 60 * 60 * 24
+
+        };
+
+        payload.sound = `default`;
+
+        payload.click_action = 'FLUTTER_NOTIFICATION_CLICK';
+
+        const paran = {
+
+            notification: payload,
+
+            data
+
+        };
+
+        admin.firestore().collection('userDetails').get().then(snapshot => {
+
+            var token = [];
+
+            if (!snapshot.empty) {
+
+                snapshot.forEach(doc => {
+
+                    var p = doc.data();
+
+                    if (userList.indexOf(p.userId.toString()) > 0 && parseInt(uId) != p.userId && p.token !=null ) {
+
+                        token.push(p.token);
+
+                        paran.data.badage=(p.badage ? p.badage + 1 : 1).toString()
+
+                        doc.ref.update({
+
+                            badage: p.badage ? p.badage + 1 : 1
+
+                        });
+
+                    }
+
+                });
+
+                if (token.length > 0) {
+
+                    admin.messaging().sendToDevice(token, paran, notification_options)
+
+                        .then(res => { console.log(res) }).catch(err => console.log(err));
+
+                }
+
+            }
+
+        }).then((ss) => {
+
+            console.log(ss)
+
+        })
+
+            .catch(error => {
+
+                console.log(error)
+
+            });;
+
+    }
+
+
+
