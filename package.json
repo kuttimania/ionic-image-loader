@@ -51,6 +51,6 @@
     "zone.js": "0.8.26"
   },
   "peerDependencies": {
-     "@awesome-cordova-plugins/file": "^5.37.3",
+     "@awesome-cordova-plugins/file": "^5.37.3"
   }
 }
