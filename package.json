@@ -45,12 +45,14 @@
     "conventional-changelog-cli": "^2.0.1",
     "ionic-angular": "^3.9.2",
     "rimraf": "^2.6.2",
-   "rxjs": "^6.5.3 || ^7.4.0",
+    "rxjs": "^5.5.0 || ^6.5.0",
     "tslint": "^5.11.0",
     "typescript": "2.4.2",
     "zone.js": "0.8.26"
   },
   "peerDependencies": {
-     "@awesome-cordova-plugins/file": "^5.37.3"
+    "@ionic-native/file": "^4.0.0",
+    "rxjs": "^5.5.0 || ^6.5.0"
+    
   }
 }
